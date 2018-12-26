@@ -1,0 +1,17 @@
+_template
+
+_temp
+
+*.log
+*.aux
+*.bbl
+*.blg
+*.lof
+*.log
+*.lot
+*.out
+*.syn*
+*.toc
+*.xml
+
+*.ini

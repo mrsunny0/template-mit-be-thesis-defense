@@ -1,0 +1,132 @@
+%---------------------------------------------------------------------------%
+%								   Preamble									%
+%---------------------------------------------------------------------------%
+% declare document class, 12pt, lettersize and article 
+% could also be report, however section headers turn into chapters
+% \documentclass[12pt, lettersize]{article}
+\documentclass[12pt,twoside]{../main/mitthesis}
+
+% use subfiles to modularize pieces of the LaTeX code
+\usepackage{subfiles}
+
+% import preamble.sty for packages
+% import refextdoc.sty for subfile crossreferencing
+% note the relative import. Because subfiles (e.g. abstract, introduction, etc.)
+% are located in separate files, for all files to be obtainable by main and subfiles,
+% need to tranverse up to the root directory (../) then back to the appropriate files in /main
+\usepackage{../main/_preamble}
+\usepackage{../main/_refextdoc}
+
+% relative imports of images
+% note that graphics path should be encased in {}, ends with / to define directory, 
+% and finally separated by , without any lead or lag spaces.
+% therefore graphicsspath should look like \graphiscpath{{abc/},{xyz/},{123/}}
+% spaces in directory names are not recommended, however the the \usepackage[space]{grffile}
+% will attempt to work with directories with spaces
+\graphicspath{{../figures/}}
+
+%-----------------------%
+% MIT specific packages %
+%-----------------------%
+%% These have been added at the request of the MIT Libraries, because
+%% some PDF conversions mess up the ligatures.  -LB, 1/22/2014
+\usepackage{cmap}
+\usepackage[T1]{fontenc}
+\pagestyle{plain}
+
+%---------------------------------------------------------------------------%
+%								Begin Document								%
+%---------------------------------------------------------------------------%
+\begin{document}
+
+%-----------
+% Titlepage
+%-----------
+\input{1_titlepage}
+\cleardoublepage
+
+%----------
+% Abstract
+%----------
+\pagestyle{empty}
+\input{2_abstract}
+\cleardoublepage
+
+%------------------
+% Acknowledgements
+%------------------
+\pagestyle{empty}
+\input{3_acknowledgements} 
+\cleardoublepage
+
+%------------
+% Signatures
+%------------
+\pagestyle{empty}
+\input{4_signatures}
+\cleardoublepage
+
+%------------------
+% Table of Contents
+%------------------
+% some thesis documents wil also want a table of contents for figures and tables
+% uncomment the commands below to create a table of contents for figures and tables
+%\listoffigures 
+%\listoftables
+\tableofcontents
+\newpage
+\listoffigures
+\newpage
+\listoftables
+ 
+% page numbering can be roman (e.g. i, ii, iii, iv), alpha (a, b, c, d)
+% or arabic (1,2,3,4). Change the below option to roman for front matter text
+% such as preface pages, alph for alpha lettering (e.g. Appendix maybe)
+% or arabic for standard page numbering. If you want to restart the page 
+% counter because you are using a new numbering format, you can use 
+% \setcounter{page}{X} where X is the new number you want to count on.
+\pagenumbering{arabic}
+\pagestyle{plain}
+
+%---------------------------------------------------------------------------%
+% Chapters
+%---------------------------------------------------------------------------%
+% Chapter 0 - Introduction
+\subfile{../chapters/chapter_0}
+
+% Chapter 1 - Chemical Precipitation
+\subfile{../chapters/chapter_1}
+
+% Chapter 1 - Absorption
+\subfile{../chapters/chapter_2}
+
+% Chapter 1 - Sponges
+\subfile{../chapters/chapter_3}
+
+% Chapter 1 - Filters
+\subfile{../chapters/chapter_4}
+
+% Chapter 1 - Machine Learning
+\subfile{../chapters/chapter_5}
+
+%---------------------------------------------------------------------------%
+% Appendix
+%---------------------------------------------------------------------------%
+\newpage
+\appendix
+
+% A - Calculations
+\subfile{../appendix/appendix_A}
+
+%---------------------------------------------------------------------------%
+% Bibliography
+%---------------------------------------------------------------------------%
+\begin{singlespace}
+% \bibliography{../bib/bib_chapter1}
+\bibliographystyle{plain}
+\end{singlespace}
+
+%---------------------------------------------------------------------------%
+%								 End Document								%
+%---------------------------------------------------------------------------%
+\end{document}
