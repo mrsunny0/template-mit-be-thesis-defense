@@ -14,5 +14,6 @@ _temp
 *.toc
 *.xml
 *.bak
+*.bcf
 
 *.ini
