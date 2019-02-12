@@ -17,7 +17,10 @@ The template provided here is a consolidated and organized version of the MIT te
 - [Help and feedback](#help-and-feedback)
 
 # Getting started
+To be written...
 
 # Managing your documents
+To be written...
 
 # Help and feedback
+To be written...

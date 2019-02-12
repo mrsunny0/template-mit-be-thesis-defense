@@ -13,5 +13,6 @@ _temp
 *.syn*
 *.toc
 *.xml
+*.bak
 
 *.ini

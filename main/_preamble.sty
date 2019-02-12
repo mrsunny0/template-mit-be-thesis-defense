@@ -1,5 +1,5 @@
 %---------------------------------------------------------------------------%
-%								   Preamble									%
+%                                 PREAMBLE                                  %
 %---------------------------------------------------------------------------%
 \ProvidesPackage{preamble}
 
@@ -21,12 +21,12 @@
 \usepackage{makecell}		% formatting cells within tabular with \thead and \makecell
 \usepackage{multicol} 		% for tabular \multicolumn 
 \usepackage{multirow} 		% for tabular - \multirow
-% \usepackage{hyperref}		% urls
 \PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}	% urls that linebreak
 \usepackage{import}			% import subfiles
-\usepackage{cite}			% exernal .bib referencing
+% \usepackage{cite}			% exernal .bib referencing: NO LONGER NEEDED WITH BIBLATEX
 \usepackage{longtable}		% tables extend multiple pages \begin{longtable}{}
 \usepackage{ltablex}		% provides tabularx, page breaking capabilities
+\usepackage{tabularx}		% allows width to be specified
 \usepackage{rotating}		% sideways and rotate package
 
 %--------------%
@@ -35,6 +35,7 @@
 %\usepackage[super,comma,sort]{natbib}	% for superscript citations 
 %\usepackage[sorting=none,backend=bibtex]{biblatex} % essential for unsorted bibliographies
 %\setlength{\bibsep}{0pt}	% removing spacing in bibliography using bibtex
+% setting up biblatex and biber: https://tex.stackexchange.com/questions/44040/biblatex-biber-texmaker-miktex
 
 %---------%
 % Add-ons %
@@ -45,14 +46,16 @@
 \usepackage{booktabs}		% top, mid and bottom rule for tables
 \usepackage[version=4]{mhchem}	% for writing chemical formulas, use \ce{}
 \usepackage{rotating}		% writing vertically using \begin{turn} ... \end{turn}
+\usepackage{amssymb}		% random symbols like checkmarks
 \usepackage{enumitem}		% modifications to enumerated list
-\usepackage{siunitx}		% include SI units in math mode
+\usepackage{siunitx}		% include SI units in math modeSI units package
 \usepackage{adjustbox}		% rescale tables to fit page
 \usepackage{changepage}   	% for the adjustwidth environment
 \usepackage[hang,flushmargin,bottom]{footmisc} 	% foot notes go on the bottom and no indent
 \usepackage{cleveref}		% multi-clever referencing
 \usepackage{pdfpages}		% add external pdf module
 \usepackage{enumitem}		% enumerate referenced items
+\usepackage[]{algorithm2e}	% writing algorithms
 
 %---------------%
 % Graphics Path %
@@ -94,17 +97,21 @@
 % \captionsetup[subfigure]{justification=raggedright,singlelinecheck=false}
 % \captionsetup[subtable]{justification=raggedright,singlelinecheck=false}
 
-%% footnotes are at the bottom of page (included in the mitthesis.cls)
+%% footnotes are at the bottom of page
 % \usepackage[bottom]{footmisc}
 
-% \makeatletter
-% \providecommand\add@text{}
-% \newcommand\tagaddtext[1]{%
-%   \gdef\add@text{#1\gdef\add@text{}}}% 
-% \renewcommand\tagform@[1]{%
-%   \maketag@@@{\llap{\add@text\quad}(\ignorespaces#1\unskip\@@italiccorr)}%
-% }
-% \makeatother
+%% add units after math equations
+\makeatletter
+\providecommand\add@text{}
+\newcommand\tagaddtext[1]{%
+  \gdef\add@text{#1\gdef\add@text{}}}% 
+\renewcommand\tagform@[1]{%
+  \maketag@@@{\llap{\add@text\quad}(\ignorespaces#1\unskip\@@italiccorr)}%
+}
+\makeatother
+
+%% siunitx modifications 
+\sisetup{per-mode=symbol}
 
 %% no maker for footnotes
 %\newcommand\blfootnote[1]{%

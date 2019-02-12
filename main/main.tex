@@ -1,5 +1,5 @@
 %---------------------------------------------------------------------------%
-%								   Preamble									%
+%                                 PREAMBLE                                  %
 %---------------------------------------------------------------------------%
 % declare document class, 12pt, lettersize and article 
 % could also be report, however section headers turn into chapters
@@ -23,60 +23,92 @@
 % therefore graphicsspath should look like \graphiscpath{{abc/},{xyz/},{123/}}
 % spaces in directory names are not recommended, however the the \usepackage[space]{grffile}
 % will attempt to work with directories with spaces
-\graphicspath{{../figures/}}
+\graphicspath{{../chapter_1/_figures/},
+				{../chapter_2/_figures/},
+				{../chapter_3/_figures/},
+				{../chapter_4/_figures/},
+				{../chapter_5/_figures/},
+				{../appendix/_figures/}}
+				
+% relative imports for \input
+% typically used for tables which are input'd per chapter/appendix
+% names of input files can be written as is without the relative path prefix
+\makeatletter 
+	\def\input@path{{../chapter_1/_tables/},
+					{../chapter_2/_tables/},
+					{../chapter_3/_tables/},
+					{../chapter_4/_tables/},
+					{../chapter_5/_tables/},
+					{../appendix/_tables/}}
+\makeatother
+				
+% set bibliographies
+\usepackage[citestyle=numeric,
+	style=numeric-comp, % cite instances such as 1-5
+	sorting=none,
+	refsection=chapter,
+	doi=false,	% supress digital object identifier
+	isbn=false,	% supress international standard book number
+	url=false	% suppress url and date of access
+	]{biblatex}		
+		
+% establish bibliograhies paths	
+\addbibresource{../chapter_1/_bib/bib_chapter1.bib}
+%\addbibresource{../chapter_2/_bib/bib_chapter2.bib}	
+%\addbibresource{../chapter_3/_bib/bib_chapter3.bib}	
+%\addbibresource{../chapter_4/_bib/bib_chapter4.bib}	
+%\addbibresource{../chapter_5/_bib/bib_chapter5.bib}		
+%\addbibresource{../appendix/_bib/bib_appendix.bib}
 
-%-----------------------%
-% MIT specific packages %
-%-----------------------%
-%% These have been added at the request of the MIT Libraries, because
-%% some PDF conversions mess up the ligatures.  -LB, 1/22/2014
+%% MIT specific packages 
+% These have been added at the request of the MIT Libraries, because
+% some PDF conversions mess up the ligatures.  -LB, 1/22/2014
 \usepackage{cmap}
 \usepackage[T1]{fontenc}
 \pagestyle{plain}
 
+%% Personal preference
+% prevent hyphenation of specific words
+% \hyphenation{thatshouldnot}
+% remove all hyphenations
+\global\hyphenpenalty=100000
+
 %---------------------------------------------------------------------------%
-%								Begin Document								%
+%                                BEGIN DOCUMENT                             %
 %---------------------------------------------------------------------------%
 \begin{document}
 
-%-----------
-% Titlepage
-%-----------
+%------------------%
+% FRONT MATTER
+%------------------%
+% Title page
 \input{1_titlepage}
-\cleardoublepage
+%\cleardoublepage
 
-%----------
 % Abstract
-%----------
 \pagestyle{empty}
 \input{2_abstract}
-\cleardoublepage
+%\cleardoublepage
 
-%------------------
 % Acknowledgements
-%------------------
 \pagestyle{empty}
 \input{3_acknowledgements} 
-\cleardoublepage
+%\cleardoublepage
 
-%------------
-% Signatures
-%------------
+% Signatures (optional)
 \pagestyle{empty}
 \input{4_signatures}
-\cleardoublepage
+%\cleardoublepage
 
-%------------------
-% Table of Contents
-%------------------
+%------------------%
+% TABLE OF CONTENTS
+%------------------%
 % some thesis documents wil also want a table of contents for figures and tables
 % uncomment the commands below to create a table of contents for figures and tables
-%\listoffigures 
-%\listoftables
 \tableofcontents
-\newpage
+%\newpage
 \listoffigures
-\newpage
+%\newpage
 \listoftables
  
 % page numbering can be roman (e.g. i, ii, iii, iv), alpha (a, b, c, d)
@@ -89,44 +121,47 @@
 \pagestyle{plain}
 
 %---------------------------------------------------------------------------%
-% Chapters
+%                                  CHAPTERS                                 %
 %---------------------------------------------------------------------------%
-% Chapter 0 - Introduction
-\subfile{../chapters/chapter_0}
+% Chapter 1 - 
+\subfile{../chapter_1/chapter_1}
 
-% Chapter 1 - Chemical Precipitation
-\subfile{../chapters/chapter_1}
+% Chapter 2 - 
+\subfile{../chapter_2/chapter_2}
 
-% Chapter 1 - Absorption
-\subfile{../chapters/chapter_2}
+% Chapter 3 - 
+\subfile{../chapter_3/chapter_3}
 
-% Chapter 1 - Sponges
-\subfile{../chapters/chapter_3}
+% Chapter 4 - 
+\subfile{../chapter_4/chapter_4}
 
-% Chapter 1 - Filters
-\subfile{../chapters/chapter_4}
-
-% Chapter 1 - Machine Learning
-\subfile{../chapters/chapter_5}
+% Chapter 5 - 
+\subfile{../chapter_5/chapter_5}
 
 %---------------------------------------------------------------------------%
-% Appendix
+%                                  APPENDIX                                 %
 %---------------------------------------------------------------------------%
 \newpage
 \appendix
 
-% A - Calculations
+% A
 \subfile{../appendix/appendix_A}
 
-%---------------------------------------------------------------------------%
-% Bibliography
-%---------------------------------------------------------------------------%
-\begin{singlespace}
-% \bibliography{../bib/bib_chapter1}
-\bibliographystyle{plain}
-\end{singlespace}
+% B 
+\subfile{../appendix/appendix_B}
+
+% C 
+\subfile{../appendix/appendix_C}
 
 %---------------------------------------------------------------------------%
-%								 End Document								%
+%                                 BIBLIOGRAPHY                              %
+%---------------------------------------------------------------------------%
+% \begin{singlespace}
+% \bibliography{../bib/bib_chapter1}
+% \bibliographystyle{plain}
+% \end{singlespace}
+
+%---------------------------------------------------------------------------%
+%                                 END DOCUMENT                              %
 %---------------------------------------------------------------------------%
 \end{document}
